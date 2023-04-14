@@ -10,21 +10,41 @@ public class Keyboard {
   
   public static void multipleChoiceInt(MultipleChoice<Integer> handler) throws Exception {
     int value = getInt();
+    if(!handler.isCorrect(Integer.valueOf(value))) {
+      handler.handleIncorrect(Integer.valueOf(value));
+      multipleChoiceInt(handler);
+      return;
+    }
     handler.handle(Integer.valueOf(value));
   }
   
   public static void multipleChoiceString(MultipleChoice<String> handler) throws Exception {
     String value = getString();
+    if(!handler.isCorrect(value)) {
+      handler.handleIncorrect(value);
+      multipleChoiceString(handler);
+      return;
+    }
     handler.handle(value);
   }
   
   public static void multipleChoiceChar(MultipleChoice<Character> handler) {
     char value = getChar();
+    if(!handler.isCorrect(Character.valueOf(value))) {
+      handler.handleIncorrect(Character.valueOf(value));
+      multipleChoiceChar(handler);
+      return;
+    }
     handler.handle(Character.valueOf(value));
   }
   
   public static void multipleChoiceCharln(MultipleChoice<Character> handler) throws Exception {
     char value = getCharln();
+    if(!handler.isCorrect(Character.valueOf(value))) {
+      handler.handleIncorrect(Character.valueOf(value));
+      multipleChoiceCharln(handler);
+      return;
+    }
     handler.handle(Character.valueOf(value));
   }
   
